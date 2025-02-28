@@ -197,3 +197,31 @@ func (t *Todos) getIndexById(id int) int {
 
 	return index
 }
+
+func (t *Todos) Update(id int, task string, cat string, done int) error {
+	ls := *t
+
+	index := t.getIndexById(id)
+	if index == -1 {
+		return errors.New("invalid ID")
+	}
+
+	if len(task) != 0 {
+		ls[index].Task = task
+	}
+
+	if len(cat) != 0 {
+		ls[index].Category = cat
+	}
+
+	if done == 0 {
+		ls[index].Done = true
+		ls[index].CompletedAt = nil
+	} else if done == 1 {
+		ls[index].Done = false
+		completedAt := time.Now()
+		ls[index].CompletedAt = &completedAt
+	}
+
+	return nil
+}

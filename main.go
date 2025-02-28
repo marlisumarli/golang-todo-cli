@@ -30,7 +30,7 @@ func main() {
 		cmd.DeleteTask(todos, os.Args[2:])
 	case "update":
 		cmd.RemaindInit(todos)
-		//cmd.UpdateTasks(todos, os.Args[2:])
+		cmd.UpdateTask(todos, os.Args[2:])
 	default:
 		fmt.Println("Invalid command.")
 		os.Exit(1)
