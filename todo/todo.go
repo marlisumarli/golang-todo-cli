@@ -2,6 +2,7 @@ package todo
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -83,7 +84,7 @@ func (t *Todos) Print(status int, category string) {
 			{Align: simpletable.AlignCenter, Text: "Category"},
 			{Align: simpletable.AlignCenter, Text: "Task"},
 			{Align: simpletable.AlignCenter, Text: "Done?"},
-			{Align: simpletable.AlignCenter, Text: "CretedAt"},
+			{Align: simpletable.AlignCenter, Text: "CreatedAt"},
 			{Align: simpletable.AlignCenter, Text: "CompletedAt"},
 		},
 	}
@@ -177,6 +178,11 @@ func (t *Todos) Delete(id int) error {
 
 	*t = append(ls[:index], ls[index+1:]...)
 
+	return nil
+}
+
+func (t *Todos) DeleteAll() error {
+	*t = []item{}
 	return nil
 }
 
