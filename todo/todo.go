@@ -166,3 +166,28 @@ func (t *Todos) CountPending() int {
 	}
 	return total
 }
+
+func (t *Todos) Delete(id int) error {
+	ls := *t
+	index := t.getIndexById(id)
+
+	if index == -1 {
+		return errors.New("invalid ID")
+	}
+
+	*t = append(ls[:index], ls[index+1:]...)
+
+	return nil
+}
+
+func (t *Todos) getIndexById(id int) int {
+	index := -1
+	for i, todo := range *t {
+		if todo.ID == id {
+			index = i
+			break
+		}
+	}
+
+	return index
+}
