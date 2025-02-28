@@ -26,4 +26,6 @@ go.work.sum
 
 .idea
 
+todos.json
+
 .DS_Store
